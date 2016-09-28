@@ -2,26 +2,6 @@
 # TESTFLOWS: This defines test flows, their order and their alias names
 Flows:
 
-  IDP-AuthnRedirect-no_nid:
-    tc_id: websso-01
-    desc: AuthnRequest/redirect, no requested nameID format
-    profiles:
-      - saml2int
-    sequence:
-      - AuthnRedirectRequest:
-          add_post_condition:
-              http_response:
-                  status_code:
-                    - 200
-                    - 302
-                    - 303
-          set_request_args:
-            name_id.format: ''
-    sp: acs-post
-    assert:
-      verify_saml_status:
-        saml_status: urn:oasis:names:tc:SAML:2.0:status:Success
-
   IDP-AuthnRedirect-nid_unspecified:
     tc_id: websso-02
     desc: AuthnRequest/redirect with nameID format 'unspecified'
